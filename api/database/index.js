@@ -1,6 +1,6 @@
 'use strict';
 
-const fileLoader = require('../utils/fileWalker');
+const fileLoader = require('../utils/fileScan');
 const Sequelize = require('sequelize');
 
 module.exports = (config) => {

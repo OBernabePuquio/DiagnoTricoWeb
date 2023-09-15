@@ -1,6 +1,5 @@
 'use strict';
 
-//const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('tbl_areas_sin_pelo', {
     id: {

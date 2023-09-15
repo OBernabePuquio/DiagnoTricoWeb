@@ -1,7 +1,7 @@
 'use strict';
 
 // DEPENDENCIAS
-const fileLoader = require('../utils/fileWalker');
+const fileLoader = require('../utils/fileScan');
 
 module.exports = (config, app,db) => {
     fileLoader(__dirname).filter(file => {

@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Función para obtener todos los ficheros de carpetas y subcarpetas    
-function fileWalker(dir) {
+function fileScan(dir) {
     const results = [];
     const files = fs.readdirSync(dir);
 
@@ -12,10 +12,10 @@ function fileWalker(dir) {
         const filePath = path.join(dir, file);
         const fileStat = fs.statSync(filePath);
         if (fileStat && fileStat.isDirectory()) {
-            // Recurse into a subdirectory
-            results.push(...fileWalker(filePath));
+            // si es un directorio se revisa su contenido
+            results.push(...fileScan(filePath));
         } else {
-            // Is a file
+            // si es un archivo
             results.push(filePath);
         }
     });
@@ -23,4 +23,4 @@ function fileWalker(dir) {
     return results;
 }
 
-module.exports = fileWalker;
+module.exports = fileScan;
