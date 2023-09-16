@@ -25,18 +25,6 @@ dbmodels.then((db) => {
                 // Manejador para solicitudes OPTIONS
                 app.options('*', cors());
 
-        // front end: 
-            //app.get("/", (req, res) => res.sendFile(path.join(__dirname, '..', '..', 'public', 'views', 'inicio.html')));
-
-            //archivos estáticos:
-            //app.use('*/css', express.static(path.join(__dirname, '..', '..', 'public', 'css')));
-            //app.use('*/scripts', express.static(path.join(__dirname, '..', '..', 'public', 'scripts')));
-            //app.use('*/img', express.static(path.join(__dirname, '..', '..', 'public', 'img')));
-            //app.use('*/include', express.static(path.join(__dirname, '..', '..', 'public', 'include')));
-            //app.use('*/assets', express.static(path.join(__dirname, '..', '..', 'public', 'assets')));
-            //app.use('*/views', express.static(path.join(__dirname, '..', '..', 'public', 'views')));
-            //app.use('*/node_modules', express.static(path.join(__dirname, '..', '..', 'node_modules'))); 
-
         //controladores:
         var router = express.Router();
         require('./api/controllers')(config, router,db);
