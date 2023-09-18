@@ -1,0 +1,107 @@
+<main class="contenedorformulario m-auto pt-3 abs-center">
+
+   <!-- Formulario -->
+
+    <div class="starter-template">
+
+      <div class="row">
+
+        <div class="col-md-12 mt5 "> 
+
+            <h2><p class="text-center fw-bold">{{ title }}</p></h2>
+
+            <form class="row g-3" >
+                <div class="col-md-4">
+                  <label for="inputCodigo_paciente" class="form-label">Código Identificación Paciente</label>
+                  <input type="text" class="form-control" id="inputcodigo_paciente">
+                </div>
+                <div class="col-md-2">
+                  <label for="inputSexo_id" class="form-label">Sexo</label>
+                  <select id="inputSexo_id" class="form-select">
+                    <option value="" selected>Seleccionar</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEscala_alopecia_item_id" class="form-label">Grado alopecia</label>
+                  <select id="inputEscala_alopecia_item_id" class="form-select">
+                    <option value="" selected>Seleccionar</option>
+                    <option>...</option>
+                  </select>
+                </div>               
+                <div class="col-12">
+                  <label for="inputAreas_sin_pelo_id" class="form-label">¿Existen áreas de 1 cm2 en donde no exista pelo?</label>
+                  <select id="inputAreas_sin_pelo_id" class="form-select">
+                    <option value="" selected>Seleccionar</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label fw-bold">Sección: Criterios Mayores</label>
+               </div>               
+                <div class="col-md-4">
+                  <label for="inputPuntos_amarillos_id" class="form-label">1. Puntos Amarillos</label>
+                  <select id="inputPuntos_amarillos_id" class="form-select">
+                    <option value="" selected>Seleccionar</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-md-8">
+                  <label for="inputGrosor_pelo_comparacion_id" class="form-label">2. Menor grosor promedio del pelo en el área frontal en comparación al occipital</label>
+                  <select id="inputGrosor_pelo_comparacion_id" class="form-select">
+                    <option value="" selected>Seleccionar</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-md-8">
+                  <label for="inputPelo_finos_frontal_id" class="form-label">3. Más de 10% de pelos finos en la foto del área frontal</label>
+                  <select id="inputPelo_finos_frontal_id" class="form-select">
+                    <option value="" selected>Seleccionar</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                </div> 
+                <div class="col-12">
+                  <label class="form-label fw-bold">Sección: Criterios Menores</label>
+               </div>       
+               <div class="col-md-8">
+                <label for="inputProporcion_frontal_vs_occipital_id" class="form-label">1. Proporción frontal Versus Occipital aumentada de Ostium con un solo cabello</label>
+                <select id="inputProporcion_frontal_vs_occipital_id" class="form-select">
+                  <option value="" selected>Seleccionar</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="inputExistencia_pelos_vellosos_miniaturizados_id" class="form-label">2. Existencia de pelos vellosos o miniaturizados</label>
+                <select id="inputExistencia_pelos_vellosos_miniaturizados_id" class="form-select">
+                  <option value="" selected>Seleccionar</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="col-md-8">
+                <label for="inputDecoloracion_piel_id" class="form-label">3. Decoloración de la piel alrededor de los pelos del cuero cabelludo</label>
+                <select id="inputDecoloracion_piel_id" class="form-select">
+                  <option value="" selected>Seleccionar</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+              </div> 
+              <div class="col-12">
+                <label for="inputComentario_evaluacion" class="form-label">Comentarios del médico</label>
+                <textarea class="form-control" id="inputComentario_evaluacion" rows="4" cols="50"></textarea>
+              </div>             
+              <div class="col-12 abs-center">
+                  <button type="submit" class="btn btn-primary">Grabar Formulario</button>
+              </div>              
+            </form>
+
+        </div>
+          
+      </div>
+
+    </div>
+
+  </main>
+
