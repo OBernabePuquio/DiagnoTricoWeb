@@ -1,4 +1,7 @@
 .contenedorformulario {
 	margin-top: 30px;
-	width: 80%;
+	width: 100%;
+	background: rgb(208, 226, 237);
+	padding-left: 20px;
+	padding-right: 20px;
 }

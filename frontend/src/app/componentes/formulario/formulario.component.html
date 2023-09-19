@@ -1,4 +1,4 @@
-<main class="contenedorformulario m-auto pt-3 abs-center">
+<main class="contenedorformulario m-auto pt-3 pb-3 abs-center">
 
    <!-- Formulario -->
 
@@ -92,10 +92,41 @@
                 <label for="inputComentario_evaluacion" class="form-label">Comentarios del médico</label>
                 <textarea class="form-control" id="inputComentario_evaluacion" rows="4" cols="50"></textarea>
               </div>             
-              <div class="col-12 abs-center">
+              <div class="col-12 align-self-center">
                   <button type="submit" class="btn btn-primary">Grabar Formulario</button>
               </div>              
             </form>
+           
+            <div class="row g-2" >
+              <div class="col-md-12">
+              </div>              
+              <div class="col-md-6">
+                <form class="row g-3" >
+                  <div class="col-md-6">Fotografias Tricoscópica</div>
+                  <div class="col-md-6"><button type="button" class="btn btn-primary">Añadir</button></div>
+                  <div class="col-md-12">
+                      Grid
+                    <!-- <ul>
+                      <li class="text" *ngFor="let item of items | async">
+                          {{item.name}}
+                      </li>
+                    </ul> -->
+
+                  </div>
+                </form>
+              </div>   
+              <div class="col-md-6">
+                <form class="row g-3" >
+                  <div class="col-md-6">Sugerencia de diagnóstico</div>
+                  <div class="col-md-6"><button type="button" class="btn btn-primary">Generar sugerencia diagnóstico</button></div>
+                  <div class="col-md-12">
+                    <textarea class="form-control" id="inputSugerencia" rows="4" cols="50"></textarea>
+                  </div>
+                </form>
+              </div>  
+            </div>
+
+           
 
         </div>
           

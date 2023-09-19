@@ -1,1 +1,41 @@
-<p>busqueda works!</p>
+<main class="contenedorformulario m-auto pt-3 pb-3 abs-center">
+
+    <!-- Formulario -->
+ 
+     <div class="starter-template">
+ 
+       <div class="row">
+ 
+         <div class="col-md-12 mt5 "> 
+            <form class="row g-3" >
+                <div class="col-md-6">
+                  <label for="inputCodigo_paciente" class="form-label">Código Identificación Paciente</label>
+                  <input type="text" class="form-control" id="inputcodigo_paciente">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputFecha" class="form-label">Fecha</label>
+                  <input type="text" class="form-control" id="inputFecha">
+                </div>               
+                <div class="col-12 align-self-center">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>              
+            </form>
+            <div class="row g-2" >
+                <div class="col-md-12">
+                </div>                 
+                <div class="col-md-12">
+                    Grid de resultados
+                    <!-- <ul>
+                      <li class="text" *ngFor="let item of items | async">
+                          {{item.name}}
+                      </li>
+                    </ul> -->
+                </div>                 
+            </div>
+         </div>
+          
+      </div>
+  
+    </div>
+  
+</main>
