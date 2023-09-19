@@ -4,11 +4,11 @@
     <h1 class="h3 mb-3 pt-1 fw-normal">Inicio de Sesión</h1>
 
     <div class="form-floating">
-    <input type="text" class="form-control" id="username" placeholder="usuario" required>
+    <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username" placeholder="usuario" required="required">
     <label for="username">Usuario</label>
     </div>
     <div class="form-floating">
-    <input type="password" class="form-control" id="password" placeholder="contraseña" required>
+    <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" placeholder="contraseña" required="required">
     <label for="password">Contraseña</label>
     </div>
     <button class="btn btn-primary w-100 mt-1 py-2" type="submit" (click)="login()">Iniciar sesión</button>

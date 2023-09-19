@@ -50,7 +50,7 @@ module.exports = (config, app, db)=>{
 
     //login:
     app.post("/auth", async (req, res) => {
-        if (req.body.user_name === undefined || req.body.user_name === null || req.body.user_name.trim() === "") {
+        if (req.body.username === undefined || req.body.username === null || req.body.username.trim() === "") {
             return res.status(400).jsonp({ error: 'Falta ingresar Usuario', err_config: config.err });
         }
 
@@ -60,7 +60,7 @@ module.exports = (config, app, db)=>{
 
         return db.tbl_usuario.findOne({
             where: {
-                usuario: req.body.user_name,
+                usuario: req.body.username,
                 password: req.body.password
             }
         }).then(result => { 
