@@ -12,51 +12,46 @@
 
             <form class="row g-3" >
                 <div class="col-md-4">
-                  <label for="inputCodigo_paciente" class="form-label">Código Identificación Paciente</label>
-                  <input type="text" class="form-control" id="inputcodigo_paciente">
+                  <label for="codigo_paciente" class="form-label">Código Identificación Paciente</label>
+                  <input type="text"  [(ngModel)]="evaluacionForm.codigo_paciente" name="codigo_paciente"  class="form-control" id="codigo_paciente">
                 </div>
                 <div class="col-md-2">
                   <label for="sexo_id" class="form-label">Sexo</label>
-                  <select [(ngModel)]="evaluacionForm.sexo_id" name="sexo_id" class="form-select">
+                  <select [(ngModel)]="evaluacionForm.sexo_id" name="sexo_id" class="form-select" (ngModelChange)="filtrarEscalaAlopecia()">
                     <option *ngFor="let sexo of sexos" [value]="sexo.id">{{ sexo.descripcion }}</option>
                   </select>                 
                 </div>
                 <div class="col-md-6">
-                  <label for="inputEscala_alopecia_item_id" class="form-label">Grado alopecia</label>
-                  <select id="inputEscala_alopecia_item_id" class="form-select">
-                    <option value="" selected>Seleccionar</option>
-                    <option>...</option>
+                  <label for="escala_alopecia_item_id" class="form-label">Grado alopecia</label>
+                  <select  [(ngModel)]="evaluacionForm.escala_alopecia_item_id"  id="escala_alopecia_item_id" class="form-select" name="escala_alopecia_item_id">
+                    <option *ngFor="let escalaAlopeciaItem of escalaAlopeciaFiltrada" [value]="escalaAlopeciaItem.id">{{ escalaAlopeciaItem.descripcion }}</option>
                   </select>
                 </div>               
                 <div class="col-12">
-                  <label for="inputAreas_sin_pelo_id" class="form-label">¿Existen áreas de 1 cm2 en donde no exista pelo?</label>
-                  <select id="inputAreas_sin_pelo_id" class="form-select">
-                    <option value="" selected>Seleccionar</option>
-                    <option>...</option>
+                  <label for="areas_sin_pelo_id" class="form-label">¿Existen áreas de 1 cm2 en donde no exista pelo?</label>
+                  <select [(ngModel)]="evaluacionForm.areas_sin_pelo_id" id="areas_sin_pelo_id" class="form-select" name="areas_sin_pelo_id">
+                    <option *ngFor="let areaSinPelo of areaSinPelos" [value]="areaSinPelo.id">{{ areaSinPelo.descripcion }}</option>
                   </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label fw-bold">Sección: Criterios Mayores</label>
                </div>               
                 <div class="col-md-4">
-                  <label for="inputPuntos_amarillos_id" class="form-label">1. Puntos Amarillos</label>
-                  <select id="inputPuntos_amarillos_id" class="form-select">
-                    <option value="" selected>Seleccionar</option>
-                    <option>...</option>
+                  <label for="puntos_amarillos_id" class="form-label">1. Puntos Amarillos</label>
+                  <select [(ngModel)]="evaluacionForm.puntos_amarillos_id" id="puntos_amarillos_id" class="form-select"  name="puntos_amarillos_id">
+                    <option *ngFor="let puntoAmarrillo of puntosAmarrillos" [value]="puntoAmarrillo.id">{{ puntoAmarrillo.descripcion }}</option>
                   </select>
                 </div>
                 <div class="col-md-8">
-                  <label for="inputGrosor_pelo_comparacion_id" class="form-label">2. Menor grosor promedio del pelo en el área frontal en comparación al occipital</label>
-                  <select id="inputGrosor_pelo_comparacion_id" class="form-select">
-                    <option value="" selected>Seleccionar</option>
-                    <option>...</option>
+                  <label for="grosor_pelo_comparacion_id" class="form-label">2. Menor grosor promedio del pelo en el área frontal en comparación al occipital</label>
+                  <select id="grosor_pelo_comparacion_id"  [(ngModel)]="evaluacionForm.grosor_pelo_comparacion_id" class="form-select" name="grosor_pelo_comparacion_id">
+                    <option *ngFor="let grosorPeloComparacionItem of grosorPeloComparacion" [value]="grosorPeloComparacionItem.id">{{ grosorPeloComparacionItem.descripcion }}</option>
                   </select>
                 </div>
                 <div class="col-md-8">
-                  <label for="inputPelo_finos_frontal_id" class="form-label">3. Más de 10% de pelos finos en la foto del área frontal</label>
-                  <select id="inputPelo_finos_frontal_id" class="form-select">
-                    <option value="" selected>Seleccionar</option>
-                    <option>...</option>
+                  <label for="pelo_finos_frontal_id" class="form-label">3. Más de 10% de pelos finos en la foto del área frontal</label>
+                  <select id="pelo_finos_frontal_id" [(ngModel)]="evaluacionForm.pelo_finos_frontal_id" class="form-select" name="pelo_finos_frontal_id">
+                    <option *ngFor="let peloFinosFrontalItem of peloFinosFrontal" [value]="peloFinosFrontalItem.id">{{ peloFinosFrontalItem.descripcion }}</option>
                   </select>
                 </div>
                 <div class="col-md-4">
@@ -65,46 +60,43 @@
                   <label class="form-label fw-bold">Sección: Criterios Menores</label>
                </div>       
                <div class="col-md-8">
-                <label for="inputProporcion_frontal_vs_occipital_id" class="form-label">1. Proporción frontal Versus Occipital aumentada de Ostium con un solo cabello</label>
-                <select id="inputProporcion_frontal_vs_occipital_id" class="form-select">
-                  <option value="" selected>Seleccionar</option>
-                  <option>...</option>
+                <label for="proporcion_frontal_vs_occipital_id" class="form-label">1. Proporción frontal Versus Occipital aumentada de Ostium con un solo cabello</label>
+                <select id="proporcion_frontal_vs_occipital_id" [(ngModel)]="evaluacionForm.proporcion_frontal_vs_occipital_id" class="form-select" name="proporcion_frontal_vs_occipital_id">
+                  <option *ngFor="let proporcionFrontalVsOccipitalItem of proporcionFrontalVsOccipital" [value]="proporcionFrontalVsOccipitalItem.id">{{ proporcionFrontalVsOccipitalItem.descripcion }}</option>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="inputExistencia_pelos_vellosos_miniaturizados_id" class="form-label">2. Existencia de pelos vellosos o miniaturizados</label>
-                <select id="inputExistencia_pelos_vellosos_miniaturizados_id" class="form-select">
-                  <option value="" selected>Seleccionar</option>
-                  <option>...</option>
+                <label for="existencia_pelos_vellosos_miniaturizados_id" class="form-label">2. Existencia de pelos vellosos o miniaturizados</label>
+                <select id="existencia_pelos_vellosos_miniaturizados_id" [(ngModel)]="evaluacionForm.existencia_pelos_vellosos_miniaturizados_id" class="form-select" name="existencia_pelos_vellosos_miniaturizados_id">
+                  <option *ngFor="let existenciaPelosVellososMiniaturizadoItem of existenciaPelosVellososMiniaturizado" [value]="existenciaPelosVellososMiniaturizadoItem.id">{{ existenciaPelosVellososMiniaturizadoItem.descripcion }}</option>
                 </select>
               </div>
               <div class="col-md-8">
-                <label for="inputDecoloracion_piel_id" class="form-label">3. Decoloración de la piel alrededor de los pelos del cuero cabelludo</label>
-                <select id="inputDecoloracion_piel_id" class="form-select">
-                  <option value="" selected>Seleccionar</option>
-                  <option>...</option>
+                <label for="decoloracion_piel_id" class="form-label">3. Decoloración de la piel alrededor de los pelos del cuero cabelludo</label>
+                <select id="decoloracion_piel_id" [(ngModel)]="evaluacionForm.decoloracion_piel_id" class="form-select" name="decoloracion_piel_id">
+                  <option *ngFor="let decoloracionPielItem of decoloracionPiel" [value]="decoloracionPielItem.id">{{ decoloracionPielItem.descripcion }}</option>                
                 </select>
               </div>
               <div class="col-md-4">
               </div> 
               <div class="col-12">
-                <label for="inputComentario_evaluacion" class="form-label">Comentarios del médico</label>
-                <textarea class="form-control" id="inputComentario_evaluacion" rows="4" cols="50"></textarea>
+                <label for="comentario_evaluacion" class="form-label">Comentarios del médico</label>
+                <textarea class="form-control" id="comentario_evaluacion" [(ngModel)]="evaluacionForm.comentario_evaluacion" rows="4" cols="50" name="comentario_evaluacion"></textarea>
               </div>             
               <div class="col-12 text-center">
-                  <button type="submit" class="btn btn-primary">Grabar Formulario</button>
+                  <button mat-flat-button class="btn btn-primary"  (click)="updateProduct()" >{{(evaluacionForm.id!==undefined)?'Actualizar Evaluación':'Crear Evaluación'}}</button>
               </div>              
             </form>
            
             <div class="row g-2" >
               <div class="col-md-12">
               </div>              
-              <div class="col-md-6">
+              <div class="col-md-6" *ngIf="mostrarControles">
                 <form class="row g-3" >
-                  <div class="col-md-6">Fotografias Tricoscópica</div>
+                  <div class="col-md-6 fw-bold">Fotografias Tricoscópica</div>
                   <div class="col-md-6"><button type="button" class="btn btn-primary">Añadir</button></div>
                   <div class="col-md-12">
-                      Grid
+                      <!-- Grid -->
                     <!-- <ul>
                       <li class="text" *ngFor="let item of items | async">
                           {{item.name}}
@@ -114,12 +106,12 @@
                   </div>
                 </form>
               </div>   
-              <div class="col-md-6">
+              <div class="col-md-6" *ngIf="mostrarControles">
                 <form class="row g-3" >
-                  <div class="col-md-6">Sugerencia de diagnóstico</div>
-                  <div class="col-md-6"><button type="button" class="btn btn-primary">Generar sugerencia diagnóstico</button></div>
+                  <div class="col-md-6 fw-bold">Sugerencia de diagnóstico</div>
+                  <div class="col-md-6"><button type="button" class="btn btn-primary" (click)="GenerarSugerencia()">Generar sugerencia diagnóstico</button></div>
                   <div class="col-md-12">
-                    <textarea class="form-control" id="inputSugerencia" rows="4" cols="50"></textarea>
+                    <textarea class="form-control" id="inputSugerencia" name="inputSugerencia" [(ngModel)]="sugerenciaDiagnostico" disabled rows="4" cols="50" ></textarea>
                   </div>
                 </form>
               </div>  
@@ -134,4 +126,5 @@
     </div>
 
   </main>
+  
 

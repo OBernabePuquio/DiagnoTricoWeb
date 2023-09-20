@@ -24,12 +24,11 @@ import { ProporcionFrontalVsOccipitalService } from './services/proporcion-front
 import { ExistenciaPelosVellososMiniaturizadoService } from './services/existencia-pelos-vellosos-miniaturizado.service';
 import { DecoloracionPielService } from './services/decoloracion-piel.service';
 import { AgrupacionCriterioService } from './services/agrupacion-criterio.service';
-import { AreaSinPeloService } from './services/area-sin-pelo.service';
 import { EscalaAlopeciaService } from './services/escala-alopecia.service';
 import { EvaluacionFotoService } from './services/evaluacion-foto.service';
 import { GradoAlopeciaService } from './services/grado-alopecia.service';
 import { PerfilService } from './services/perfil.service';
-
+import { AreaSinPeloService } from './services/area-sin-pelo.service';
 
 @NgModule({
   declarations: [
