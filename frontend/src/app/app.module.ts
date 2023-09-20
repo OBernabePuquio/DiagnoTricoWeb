@@ -13,6 +13,23 @@ import { BusquedaComponent } from './componentes/busqueda/busqueda.component';
 import { BlancoComponent } from './componentes/blanco/blanco.component';
 import { FormularioComponent } from './componentes/formulario/formulario.component';
 import { UserService } from './services/user.service';
+import { EvaluacionService } from './services/evaluacion.service';
+import { SexoService } from './services/sexo.service';
+import { EscalaAlopeciaItemService } from './services/escala-alopecia-item.service';
+
+import { PuntosAmarillosService } from './services/puntos-amarillos.service';
+import { GrosorPeloComparacionService } from './services/grosor-pelo-comparacion.service';
+import { PeloFinosFrontalService } from './services/pelo-finos-frontal.service';
+import { ProporcionFrontalVsOccipitalService } from './services/proporcion-frontal-vs-occipital.service';
+import { ExistenciaPelosVellososMiniaturizadoService } from './services/existencia-pelos-vellosos-miniaturizado.service';
+import { DecoloracionPielService } from './services/decoloracion-piel.service';
+import { AgrupacionCriterioService } from './services/agrupacion-criterio.service';
+import { AreaSinPeloService } from './services/area-sin-pelo.service';
+import { EscalaAlopeciaService } from './services/escala-alopecia.service';
+import { EvaluacionFotoService } from './services/evaluacion-foto.service';
+import { GradoAlopeciaService } from './services/grado-alopecia.service';
+import { PerfilService } from './services/perfil.service';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +48,23 @@ import { UserService } from './services/user.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [UserService,
+              EvaluacionService,
+              SexoService,
+              EscalaAlopeciaItemService,
+              PuntosAmarillosService,
+              GrosorPeloComparacionService,
+              PeloFinosFrontalService,
+              ProporcionFrontalVsOccipitalService,
+              ExistenciaPelosVellososMiniaturizadoService,
+              DecoloracionPielService,
+              AgrupacionCriterioService,
+              AreaSinPeloService,
+              EscalaAlopeciaService,
+              EvaluacionFotoService,
+              GradoAlopeciaService,
+              PerfilService
+            ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

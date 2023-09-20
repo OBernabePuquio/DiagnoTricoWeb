@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { API_URL } from '../../config';
+import { API_URL } from '../../config'; // Importa la URL del servidor desde tu archivo de configuración
 import { Observable } from 'rxjs';
 
 @Injectable({

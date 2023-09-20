@@ -19,7 +19,7 @@ module.exports = (config, app, db)=>{
 
     //nuevo usuario:
     app.post("/user", (req, res) => {
-        req.body._create_at = Date.now();
+        req.body.dte_fecha_creacion = Date.now();
         return db.tbl_usuario.create(req.body)
             .then((result) => res.status(200).jsonp(result))
             .catch((err) => {
@@ -29,7 +29,7 @@ module.exports = (config, app, db)=>{
     });
     //editar usuario:
     app.put("/user/:id", (req, res) => {
-        req.body._modify_at = Date.now();
+        req.body.dte_fecha_modificacion = Date.now();
         return db.tbl_usuario.update(req.body, { where: { id: req.params.id } })
             .then(() => db.tbl_usuario.findOne({ where: { id: req.params.id } }))
             .then((result) => res.status(200).jsonp(result))

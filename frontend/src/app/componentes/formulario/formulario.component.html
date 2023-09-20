@@ -16,11 +16,10 @@
                   <input type="text" class="form-control" id="inputcodigo_paciente">
                 </div>
                 <div class="col-md-2">
-                  <label for="inputSexo_id" class="form-label">Sexo</label>
-                  <select id="inputSexo_id" class="form-select">
-                    <option value="" selected>Seleccionar</option>
-                    <option>...</option>
-                  </select>
+                  <label for="sexo_id" class="form-label">Sexo</label>
+                  <select [(ngModel)]="evaluacionForm.sexo_id" name="sexo_id" class="form-select">
+                    <option *ngFor="let sexo of sexos" [value]="sexo.id">{{ sexo.descripcion }}</option>
+                  </select>                 
                 </div>
                 <div class="col-md-6">
                   <label for="inputEscala_alopecia_item_id" class="form-label">Grado alopecia</label>
