@@ -13,6 +13,8 @@ import { DecoloracionPielService } from '../../services/decoloracion-piel.servic
 import { GradoAlopeciaService } from '../../services/grado-alopecia.service';
 import { EscalaAlopeciaService } from '../../services/escala-alopecia.service';
 import { ActivatedRoute } from '@angular/router';
+import { EvaluacionFotoService } from "../../services/evaluacion-foto.service";
+import { API_URL } from '../../../config';
 
 @Component({
   selector: 'app-formulario',
@@ -35,6 +37,9 @@ export class FormularioComponent implements OnInit{
   gradoAlopecia: any[] = [];
   escalaAlopecia: any[] = [];
 
+  // Fotos
+  registros_fotos: any[] = [];
+  selectedImage: File | null = null;
   //mostrar controles inferiores:
   mostrarControles: boolean = false;
 
@@ -60,7 +65,8 @@ escalaAlopeciaFiltrada: any[] = [];
     private decoloracionPielService: DecoloracionPielService,
     private gradoAlopeciaService:GradoAlopeciaService,
     private escalaAlopeciaService:EscalaAlopeciaService,
-    private route: ActivatedRoute // Inyecta el módulo ActivatedRoute
+    private route: ActivatedRoute, // Inyecta el módulo ActivatedRoute
+    private evaluacionFotoService: EvaluacionFotoService
     ) { }
 
 	ngOnInit() {
@@ -87,6 +93,8 @@ escalaAlopeciaFiltrada: any[] = [];
       if (!isNaN(registroId)) {
         // Llama a un método para cargar los datos del registro por ID
         this.cargarRegistroPorId(registroId);
+        // fotos de la evaluacioin: 
+        this.cargar_fotos_de_evaluacion(registroId);
       }
     });
     // //-------------------------------------
@@ -106,6 +114,34 @@ escalaAlopeciaFiltrada: any[] = [];
     });
   }
 
+  cargar_fotos_de_evaluacion(registroId: number){
+    if (registroId !== null && registroId !== undefined) {
+
+      // Enviar los datos al servicio
+      this.evaluacionFotoService.getEvaluacionFotoByEvaluacionId(registroId).subscribe(fotosEvaluaciones => {
+        if (fotosEvaluaciones.length=== 0){
+          this.registros_fotos = fotosEvaluaciones;
+        } else {
+          const arrAux1 = fotosEvaluaciones.map((item:any) => {
+            const arrAux2 = item.str_ruta_foto.split("***");
+
+            const titulo = arrAux2.length > 0 ? arrAux2[0] : "";
+            const nombreServidor = arrAux2.length > 1 ? arrAux2[1] : "";
+            const id_evaluacion_foto = arrAux2.length > 2 ? arrAux2[2] : "";
+          
+            // Crea un nuevo objeto con los campos adicionales
+            return { ...item, titulo, nombreServidor, id_evaluacion_foto };
+          });
+          this.registros_fotos = arrAux1;
+
+        }
+      });
+
+    }
+  }
+
+
+
   updateProduct():void{
         if (this.evaluacionForm.id !== undefined) {
                 this.evaluacionService.updateEvaluacion(this.evaluacionForm.id,this.evaluacionForm).subscribe((data: any) => {
@@ -114,8 +150,10 @@ escalaAlopeciaFiltrada: any[] = [];
                   this.GenerarSugerencia();
 
                   alert("se actualizó los datos de forma exitosa");
-                  this.mostrarControles = true;        
-              
+                  this.mostrarControles = true;     
+
+                  // fotos de la evaluacioin: 
+                  this.cargar_fotos_de_evaluacion(this.evaluacionForm.id);
 
                    }
                 );
@@ -267,6 +305,54 @@ escalaAlopeciaFiltrada: any[] = [];
     });
   }    
 
+    //--------gestion de Fotos -------- 
 
+    onImageSelected(event: any) {
+      this.selectedImage = event.target.files[0];
+    }
+
+    onUpload() {
+      if (!this.selectedImage) {
+        console.log('No image selected');
+        return;
+      }
+  
+      const formData = new FormData();
+      formData.append('image', this.selectedImage);
+      formData.append('evaluacionId', this.evaluacionForm.id);
+          this.evaluacionFotoService.createEvaluacionFoto(formData).subscribe((data: any) => {
+            console.log(data);     
+        
+            }, 
+            (error) => {
+              console.error('Error al subir la imagen', error);
+            }           
+          );
+
+    }
+
+    eliminarRegistro(registro: any) {
+      let reg_id = registro.id;
+      // Eliminar el registro del servidor:
+      this.evaluacionFotoService.deleteEvaluacionFoto(reg_id).subscribe(resultado => {
+        if (resultado) {
+          this.cargar_fotos_de_evaluacion(this.evaluacionForm.id)
+        }
+      }); 
+    }
+
+    getImagenUrl(registro: any): string {
+      const strNombreArchivoServidor = registro["nombreServidor"];
+      const url = `${API_URL}/imagenes/${strNombreArchivoServidor}`;
+      return url
+    }
+
+    abrirImagenEnNuevaVentana(registro: any): void {
+      const strNombreArchivoServidor = registro["nombreServidor"];
+      const url = `${API_URL}/imagenes/${strNombreArchivoServidor}`;
+    
+      // Abre la imagen en una nueva ventana o pestaña
+      window.open(url, '_blank');
+    }
 
 }

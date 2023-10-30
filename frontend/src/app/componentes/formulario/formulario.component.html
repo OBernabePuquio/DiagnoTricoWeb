@@ -92,16 +92,43 @@
               <div class="col-md-12">
               </div>              
               <div class="col-md-6" *ngIf="mostrarControles">
-                <form class="row g-3" >
-                  <div class="col-md-6 fw-bold">Fotografias Tricoscópica</div>
-                  <div class="col-md-6"><button type="button" class="btn btn-primary">Añadir</button></div>
+                  <div class="col-md-12 fw-bold">Fotografias Tricoscópica</div>
                   <div class="col-md-12">
-                      <!-- Grid -->
-                    <!-- <ul>
-                      <li class="text" *ngFor="let item of items | async">
-                          {{item.name}}
-                      </li>
-                    </ul> -->
+                      <input type="file" (change)="onImageSelected($event)" accept="image/*"/> &nbsp;&nbsp;
+                       <button (click)="onUpload()" class="btn btn-primary">Subir Imagen</button>   
+                  </div>
+                  <form class="row g-3" >
+                  <div class="col-md-12">
+                    <div class="grid">
+                      <table >
+                        <thead>
+                          <tr>
+                            <th>Título</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="registros_fotos.length > 0">
+                          <tr *ngFor="let registro of registros_fotos">
+                            <td>
+                              <!-- <a [href]="getImagenUrl(registro)"> -->
+                              <a (click)="abrirImagenEnNuevaVentana(registro)" class="link_general">
+                                 {{ registro.titulo }}
+                              </a>
+                            </td>
+                            <td>{{ registro.dte_fecha_creacion | date:'dd/MM/yyyy' }}</td>
+                            <td align="center">
+                              <button class="btn btn-danger" (click)="eliminarRegistro(registro)">Eliminar</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody *ngIf="registros_fotos.length === 0">
+                          <tr>
+                            <td colspan="3" align="center">No se tienen fotos</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
 
                   </div>
                 </form>

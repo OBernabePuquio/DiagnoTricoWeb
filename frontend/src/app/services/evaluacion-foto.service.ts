@@ -22,6 +22,12 @@ export class EvaluacionFotoService {
     return this.http.get(url);
   }
 
+    // Función para obtener Fotos de una evaluación por su ID
+    getEvaluacionFotoByEvaluacionId(evaluacionId: number): Observable<any> {
+      const url = `${API_URL}/api/v1/evaluacion_foto_x_evaluacion/${evaluacionId}`;
+      return this.http.get(url);
+    }
+
   // Función para crear un nuevo registro
   createEvaluacionFoto(evaluacionData: any): Observable<any> {
     const url = `${API_URL}/api/v1/evaluacion_foto`;

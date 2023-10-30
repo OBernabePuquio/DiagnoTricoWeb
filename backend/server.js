@@ -30,6 +30,9 @@ dbmodels.then((db) => {
         require('./api/controllers')(config, router,db);
         app.use('/api/v1/',router);
 
+        //descarga de imágenes: 
+        app.use('/imagenes', express.static('fotos')); // Ruta para servir imágenes desde la carpeta "fotos"
+
         //gestion error:
         app.use(function(err, req, res, next) {
             return res.status(err.statusCode || 500).jsonp({ error: err.name, message: err.message });
