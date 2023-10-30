@@ -10,26 +10,48 @@
             <form class="row g-3" >
                 <div class="col-md-6">
                   <label for="inputCodigo_paciente" class="form-label">Código Identificación Paciente</label>
-                  <input type="text" class="form-control" id="inputcodigo_paciente">
+                  <input type="text" [(ngModel)]="busquedaForm.inputcodigo_paciente" name="inputcodigo_paciente" class="form-control" id="inputcodigo_paciente">
                 </div>
                 <div class="col-md-6">
-                  <label for="inputFecha" class="form-label">Fecha</label>
-                  <input type="text" class="form-control" id="inputFecha">
+                  <label for="inputrango_fechas" class="form-label">Rango de Fechas</label>
+                  <input type="text" [(ngModel)]="busquedaForm.inputrango_fechas" name="inputrango_fechas" id="inputrango_fechas" class="form-control" bsDaterangepicker [bsConfig]="{ containerClass: 'theme-dark-blue', adaptivePosition: true}">
                 </div>               
                 <div class="col-12 align-self-center">
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    <button mat-flat-button (click)="buscar()" class="btn btn-primary" (click)="buscar()">Buscar</button>
                 </div>              
             </form>
             <div class="row g-2" >
                 <div class="col-md-12">
                 </div>                 
                 <div class="col-md-12">
-                    Grid de resultados
-                    <!-- <ul>
-                      <li class="text" *ngFor="let item of items | async">
-                          {{item.name}}
-                      </li>
-                    </ul> -->
+                    <div class="grid">
+                      <table *ngIf="registros_evaluaciones.length > 0 && !cargaSinBusqueda">
+                        <thead>
+                          <tr>
+                            <th>Paciente</th>
+                            <th>Fecha</th>
+                            <th>Diagnóstico</th>
+                            <th>Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let registro of registros_evaluaciones">
+                            <td>{{ registro.codigo_paciente }}</td>
+                            <td>{{ registro.dte_fecha_creacion | date:'dd/MM/yyyy' }}</td>
+                            <td width="60%">{{ generarDiagnostico(registro) }}</td>
+                            <td>
+                              <button class="btn btn-primary" (click)="editarRegistro(registro)">Editar</button>
+                              <button class="btn btn-danger" (click)="eliminarRegistro(registro, template)">Eliminar</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table *ngIf="registros_evaluaciones.length === 0 && !cargaSinBusqueda">
+                        <tr>
+                          <td colspan="4">No se tienen evaluaciones que coincidan con la búsqueda</td>
+                        </tr>
+                      </table>
+                    </div>
                 </div>                 
             </div>
          </div>
@@ -37,5 +59,11 @@
       </div>
   
     </div>
-  
+    <ng-template #template>
+      <div class="modal-body text-center">
+        <p>¿Desea eliminar la evaluación?</p>
+        <button type="button" class="btn btn-default" (click)="confirm()" >Si</button>
+        <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+      </div>
+    </ng-template>
 </main>

@@ -14,7 +14,8 @@ const routes: Routes = [
   {path:'', outlet: 'secondary', component:BlancoComponent},
   {path:'blanco', outlet: 'secondary', component:BlancoComponent},
   {path:'busqueda', outlet: 'secondary', component:BusquedaComponent},
-  {path:'formulario', outlet: 'secondary', component:FormularioComponent}
+  {path:'formulario', outlet: 'secondary', component:FormularioComponent},
+  {path:'formulario/:id', outlet: 'secondary', component:FormularioComponent}
 ];
 
 const options: ExtraOptions = { useHash: true };

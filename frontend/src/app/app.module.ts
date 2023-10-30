@@ -29,6 +29,9 @@ import { EvaluacionFotoService } from './services/evaluacion-foto.service';
 import { GradoAlopeciaService } from './services/grado-alopecia.service';
 import { PerfilService } from './services/perfil.service';
 import { AreaSinPeloService } from './services/area-sin-pelo.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { AreaSinPeloService } from './services/area-sin-pelo.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [UserService,
               EvaluacionService,

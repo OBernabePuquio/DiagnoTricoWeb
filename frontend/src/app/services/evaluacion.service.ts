@@ -28,6 +28,14 @@ export class EvaluacionService {
     };
   }
 
+  // Método para obtener un formulario de búsqueda evaluación vacío
+  getBlankBusquedaEvaluacion(): any {
+    return {
+      inputcodigo_paciente: '', 
+      inputrango_fechas: null
+    };
+  }
+
   // Función para obtener las evaluaciones
   getEvaluaciones(): Observable<any> {
     const url = `${API_URL}/api/v1/evaluaciones`;
@@ -56,6 +64,12 @@ export class EvaluacionService {
   deleteEvaluacion(evaluacionId: number): Observable<any> {
     const url = `${API_URL}/api/v1/evaluacion/${evaluacionId}`;
     return this.http.delete(url);
+  }
+
+  // Función para buscar evaluaciones
+  getEvaluacionSearch(criteriosBusqueda: any): Observable<any> {
+    const url = `${API_URL}/api/v1/evaluacion_buscar`;
+    return this.http.post(url,criteriosBusqueda);
   }
 
 

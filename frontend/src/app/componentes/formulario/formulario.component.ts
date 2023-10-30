@@ -12,6 +12,7 @@ import { ExistenciaPelosVellososMiniaturizadoService } from '../../services/exis
 import { DecoloracionPielService } from '../../services/decoloracion-piel.service';
 import { GradoAlopeciaService } from '../../services/grado-alopecia.service';
 import { EscalaAlopeciaService } from '../../services/escala-alopecia.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-formulario',
@@ -58,7 +59,8 @@ escalaAlopeciaFiltrada: any[] = [];
     private existenciaPelosVellososMiniaturizadoService: ExistenciaPelosVellososMiniaturizadoService,
     private decoloracionPielService: DecoloracionPielService,
     private gradoAlopeciaService:GradoAlopeciaService,
-    private escalaAlopeciaService:EscalaAlopeciaService
+    private escalaAlopeciaService:EscalaAlopeciaService,
+    private route: ActivatedRoute // Inyecta el módulo ActivatedRoute
     ) { }
 
 	ngOnInit() {
@@ -79,6 +81,29 @@ escalaAlopeciaFiltrada: any[] = [];
     this.loadGradoAlopecia();
     this.loadescalaAlopecia();
 
+    // // Obtén el ID del registro desde la ruta
+    this.route.params.subscribe(params => {
+      const registroId = +params['id']; // Convierte el parámetro 'id' a un número
+      if (!isNaN(registroId)) {
+        // Llama a un método para cargar los datos del registro por ID
+        this.cargarRegistroPorId(registroId);
+      }
+    });
+    // //-------------------------------------
+
+  }
+
+
+  cargarRegistroPorId(registroId: number) {
+    this.evaluacionService.getEvaluacionById(registroId).subscribe((data: any) => {
+      this.evaluacionForm = data;
+      this.filtrarEscalaAlopecia();
+      // Realiza cualquier otro procesamiento necesario
+      this.GenerarSugerencia();
+
+      this.mostrarControles = true;  
+
+    });
   }
 
   updateProduct():void{
@@ -160,7 +185,8 @@ escalaAlopeciaFiltrada: any[] = [];
     filtrarEscalaAlopecia() {
       this.sexoSeleccionado = this.evaluacionForm.sexo_id;
       if (this.sexoSeleccionado !== null) {
-        const resultadoFiltrado = this.escalaAlopecia.filter(item => item.sexo_id.toString() === this.sexoSeleccionado);
+        let numerString: string = String(this.sexoSeleccionado);
+        const resultadoFiltrado = this.escalaAlopecia.filter(item => item.sexo_id.toString() === numerString);
         const arrvalor =resultadoFiltrado.map(item => item.id);
         const idsFiltrados = arrvalor.length > 0 ? arrvalor[0]:0;
           this.escalaAlopeciaFiltrada = this.escalaAlopeciaItems.filter(item => item.escala_alopecia_id === idsFiltrados);

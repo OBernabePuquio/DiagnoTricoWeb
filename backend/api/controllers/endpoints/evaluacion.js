@@ -1,4 +1,5 @@
 'use strict';
+const { Op } = require('sequelize');
 
 module.exports = (config, app, db)=>{
     app.get('/evaluaciones',(req,res)=>{
@@ -47,6 +48,29 @@ module.exports = (config, app, db)=>{
                 return res.status(500).jsonp({ error: err.name, message: err.message });
             });
     });    
+
+    //Buscar Evaluación:
+    app.post("/evaluacion_buscar", async (req, res) => {
+        const objWhere = {};
+        if (req.body.codigoPaciente != undefined && req.body.codigoPaciente !== null && req.body.codigoPaciente.trim() !== "") {
+            objWhere.codigo_paciente=req.body.codigoPaciente.trim();
+        }       
+
+        if (req.body.rangoFechas != undefined && req.body.rangoFechas !== null && req.body.rangoFechas.length > 1) {
+            var startDate = new Date(req.body.rangoFechas[0]).setHours(0, 0, 0, 0);
+            var endDate = new Date(req.body.rangoFechas[1]).setHours(23, 59, 59);
+            objWhere.dte_fecha_creacion={
+                [Op.between]: [startDate, endDate]
+            }
+        } 
+        return db.tbl_evaluacion.findAll({
+            where: objWhere
+        }).then((result) => res.status(200).jsonp(result))
+        .catch((err) => {
+            log.error(err.name, { req: req, exception: err });
+            return res.status(500).jsonp({ error: err.name, message: err.message });
+        });
+    });
 
 
 };
